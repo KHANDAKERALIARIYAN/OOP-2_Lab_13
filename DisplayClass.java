@@ -1,13 +1,8 @@
 import java.util.List;
 
 public interface DisplayClass {
-
-    void displayRegisteredUsersForAllFlight();
-
-    void displayRegisteredUsersForASpecificFlight(String flightNum);
-
-    void displayHeaderForUsers(Flight flight, List<Customer> c);
-
-    void displayFlightsRegisteredByOneUser(String userID);
-
+    void displayFlightsRegisteredByOneUser(Passenger passenger);
+    void displayRegisteredUsersForAllFlight(List<Flight> flightList);
+    void displayHeaderForUsers(Flight flight, List<Passenger> passengers);
+    void displayRegisteredUsersForASpecificFlight(Flight flight);
 }
