@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Represents a flight in the airline management system.
@@ -16,6 +15,8 @@ public class Flight {
     private String flightTime; // Estimated flight time
     private int numOfSeatsInTheFlight; // Total number of seats available
     private List<Passenger> listOfRegisteredPassengers; // List of passengers registered for the flight
+    private String destination; // Destination
+    private String departureTime; // Departure time
 
     /**
      * Constructor to initialize a Flight object.
@@ -40,6 +41,12 @@ public class Flight {
         this.flightTime = flightTime;
         this.numOfSeatsInTheFlight = numOfSeatsInTheFlight;
         this.listOfRegisteredPassengers = new ArrayList<>();
+    }
+
+    public Flight(String flightNumber, String destination, String departureTime) {
+        this.flightNumber = flightNumber;
+        this.destination = destination;
+        this.departureTime = departureTime;
     }
 
     // Getters and Setters
@@ -111,6 +118,14 @@ public class Flight {
         return listOfRegisteredPassengers;
     }
 
+    public String getDestination() {
+        return destination;
+    }
+
+    public String getDepartureTime() {
+        return departureTime;
+    }
+
     /**
      * Adds a passenger to the flight.
      *
@@ -164,12 +179,12 @@ public class Flight {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Flight flight = (Flight) o;
-        return Objects.equals(flightNumber, flight.flightNumber);
+        return flightNumber.equalsIgnoreCase(flight.flightNumber);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(flightNumber);
+        return flightNumber.toLowerCase().hashCode();
     }
 
     @Override

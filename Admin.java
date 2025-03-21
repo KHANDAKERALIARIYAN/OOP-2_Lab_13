@@ -25,11 +25,19 @@ public class Admin extends User {
      * @param flightList The list of flights in the system.
      */
     public void addFlight(Flight flight, List<Flight> flightList) {
-        if (flight != null && !flightList.contains(flight)) {
+        if (flight == null) {
+            System.out.println("Invalid flight. Cannot add null flight.");
+            return;
+        }
+        if (flightList == null) {
+            System.out.println("Flight list is null. Cannot add flight.");
+            return;
+        }
+        if (!flightList.contains(flight)) {
             flightList.add(flight);
             System.out.println("Flight added successfully: " + flight.getFlightNumber());
         } else {
-            System.out.println("Flight already exists or is invalid.");
+            System.out.println("Flight already exists.");
         }
     }
 
@@ -40,6 +48,14 @@ public class Admin extends User {
      * @param flightList The list of flights in the system.
      */
     public void removeFlight(String flightNumber, List<Flight> flightList) {
+        if (flightNumber == null || flightNumber.isEmpty()) {
+            System.out.println("Invalid flight number. Cannot remove flight.");
+            return;
+        }
+        if (flightList == null) {
+            System.out.println("Flight list is null. Cannot remove flight.");
+            return;
+        }
         Flight flightToRemove = null;
         for (Flight flight : flightList) {
             if (flight.getFlightNumber().equalsIgnoreCase(flightNumber)) {
@@ -61,6 +77,10 @@ public class Admin extends User {
      * @param flightList The list of flights in the system.
      */
     public void displayAllFlights(List<Flight> flightList) {
+        if (flightList == null) {
+            System.out.println("Flight list is null. Cannot display flights.");
+            return;
+        }
         if (flightList.isEmpty()) {
             System.out.println("No flights available.");
         } else {
